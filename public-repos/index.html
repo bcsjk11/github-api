@@ -8,16 +8,7 @@
     <title>Github Api - User Repo</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
         crossorigin="anonymous">
-
-    <style>
-        html, body {
-            margin: 0;
-        }
-
-        hr {
-            border: 2px solid #222;
-        }
-    </style>
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -27,9 +18,13 @@
             <div class="col-sm-12">
                     <h1>Github Repo's</h1>
 
-                    <input type="text" name="user" id="user" placeholder="Enter Github user here.." autofocus>
-                    <br><br>
-                    <input class="btn btn-success" type="Submit" value="Show Repositories">
+                    <div class="formgroup">
+                        <input type="text" name="user" id="user" placeholder="Enter Github user here.." autofocus>
+                        <small class="warning">Remove the parameter to use the input box.</small>
+                    </div>
+                    <div class="formgroup">
+                        <input class="btn btn-success" type="Submit" value="Show Repositories">
+                    </div>
                 
                     <hr>
                 
@@ -50,6 +45,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div id="loading"></div>
             </div>
         </div>
     </div>
@@ -63,80 +59,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 
-    <script>
-
-        let button = document.querySelector('input[type="submit"]')
-
-        button.addEventListener('click', showData)
-
-        var u = new URL(window.location.href);
-        var c = u.searchParams.get("user");
-
-
-        function showData() {
-
-            //Get username from parameter
-
-            console.log(c)
-
-            // Set up the table
-            let tbody = document.querySelector('tbody')
-            let user = document.querySelector('#user').value
-            
-            let repocount = document.querySelector('#repo-count');
-
-            //console.log(user);
-
-            let url = "";
-
-            if (c === null) {
-                url = `https://api.github.com/users/${user}/repos?per_page=100`;
-            } else {
-                url = `https://api.github.com/users/${c}/repos?per_page=100`;
-                user = c;
-            }
-
-            fetch(url)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-
-                repocount.innerHTML = `
-                    User: ${user} has ${myJson.length} repositories.
-                `
-
-                let tableStuff = "";
-
-                for (let x of myJson) {
-                    //console.log(x.name)
-                    //console.log(x.html_url)
-
-                    let sub = "";
-
-                    if (x.description !== null) {
-                        sub = `<small style="color: #06c; font-weight: bold">${x.description}</small>`
-                    } else {
-                        sub = `<small style="color: red;">No Description</small>`;
-                    }
-
-                    let pages = "";
-
-                    if (x.has_pages == true) {
-                        pages = `<br><br><a class="btn btn-info" style="width: 100%" href="https://${user}.github.io/${x.name}" target="_blank">Has Pages</a>`
-                    }
-
-                    tableStuff += `
-                        <tr><td>${x.name}<br>${sub}</td>
-                        <td><a class="btn btn-primary" style="width: 100%" href="${x.html_url}" target="_blank">View on Github</a>${pages}</td></tr>
-                        `
-                }
-
-                tbody.innerHTML = tableStuff;
-
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
