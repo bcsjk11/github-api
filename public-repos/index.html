@@ -10,6 +10,10 @@
         crossorigin="anonymous">
 
     <style>
+        html, body {
+            margin: 0;
+        }
+
         hr {
             border: 2px solid #222;
         }
@@ -23,8 +27,9 @@
             <div class="col-sm-12">
                     <h1>Github Repo's</h1>
 
-                    <input type="text" name="user" id="user" placeholder="Enter Github user here..">
-                    <input type="Submit" value="Show Repositories">
+                    <input type="text" name="user" id="user" placeholder="Enter Github user here.." autofocus>
+                    <br><br>
+                    <input class="btn btn-success" type="Submit" value="Show Repositories">
                 
                     <hr>
                 
@@ -35,7 +40,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th style="width:40%;">Name</th>
+                                <th style="width:30%;">Name</th>
                                 <th>Link</th>
                             </tr>
                         </thead>
