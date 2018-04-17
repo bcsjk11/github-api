@@ -64,17 +64,32 @@
 
         button.addEventListener('click', showData)
 
+        var u = new URL(window.location.href);
+        var c = u.searchParams.get("user");
+
+
         function showData() {
 
+            //Get username from parameter
+
+            console.log(c)
+
+            // Set up the table
             let tbody = document.querySelector('tbody')
             let user = document.querySelector('#user').value
             
             let repocount = document.querySelector('#repo-count');
 
-            console.log(user);
+            //console.log(user);
 
-            let url = `https://api.github.com/users/${user}/repos?per_page=100`;
+            let url = "";
 
+            if (c === null) {
+                url = `https://api.github.com/users/${user}/repos?per_page=100`;
+            } else {
+                url = `https://api.github.com/users/${c}/repos?per_page=100`;
+                user = c;
+            }
 
             fetch(url)
             .then(function (response) {
