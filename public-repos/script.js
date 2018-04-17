@@ -81,7 +81,7 @@ function showData() {
             let pages = "";
 
             if (x.has_pages == true) {
-                pages = `<br><br><a class="btn btn-info" style="width: 100%" href="https://${user}.github.io/${x.name}" target="_blank">Has Pages</a>`
+                pages = `<br><br><a class="btn btn-info" style="width: 100%" href="https://${user.value}.github.io/${x.name}" target="_blank">Has Pages</a>`
             }
 
             tableStuff += `
