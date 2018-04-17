@@ -112,9 +112,23 @@
                     //console.log(x.name)
                     //console.log(x.html_url)
 
+                    let sub = "";
+
+                    if (x.description !== null) {
+                        sub = `<small style="color: #06c; font-weight: bold">${x.description}</small>`
+                    } else {
+                        sub = `<small style="color: red;">No Description</small>`;
+                    }
+
+                    let pages = "";
+
+                    if (x.has_pages == true) {
+                        pages = `<br><br><a class="btn btn-info" style="width: 100%" href="https://${user}.github.io/${x.name}" target="_blank">Has Pages</a>`
+                    }
+
                     tableStuff += `
-                        <tr><td>${x.name}<br><small>${x.description}</small></td>
-                        <td><a class="btn btn-primary" href="${x.html_url}" target="_blank">View on Github</a></td></tr>
+                        <tr><td>${x.name}<br>${sub}</td>
+                        <td><a class="btn btn-primary" style="width: 100%" href="${x.html_url}" target="_blank">View on Github</a>${pages}</td></tr>
                         `
                 }
 
