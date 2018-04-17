@@ -40,7 +40,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th style="width:30%;">Name</th>
+                                <th style="width:40%;">Name</th>
                                 <th>Link</th>
                             </tr>
                         </thead>
@@ -113,7 +113,7 @@
                     //console.log(x.html_url)
 
                     tableStuff += `
-                        <tr><td>${x.name}</td>
+                        <tr><td>${x.name}<br><small>${x.description}</small></td>
                         <td><a class="btn btn-primary" href="${x.html_url}" target="_blank">View on Github</a></td></tr>
                         `
                 }
