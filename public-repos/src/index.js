@@ -1,3 +1,5 @@
+require ('./style.css')
+
 //Setup submit button
 let button = document.querySelector('input[type="submit"]')
 button.addEventListener('click', showData)
@@ -6,7 +8,6 @@ var user = document.querySelector('#user')
 var u = new URL(window.location.href);
 var c = u.searchParams.get("user");
 var s = document.querySelector('.warning')
-
 
 //if user comes from param make disable the input box
 if(c != null) {
@@ -23,7 +24,7 @@ if(c != null) {
 ////////////////////////////////////////////////////////
 
 function showSpinner(div) {
-    console.log(div)
+    // console.log(div)
   div.style.visibility = "visible";
   
 }
@@ -42,15 +43,11 @@ function showData() {
     var loadingDiv = document.getElementById('loading');
     showSpinner(loadingDiv);
 
-    //tokens
-    let cid = "ec569ac44c7094ee0173";
-    let cs = "6a39853312e1467b8331b7106e0be31b9f01250e";
-
     // Get objects for function
     let tbody = document.querySelector('tbody')
     let repocount = document.querySelector('#repo-count'); // h2 tag
 
-    let url = `https://api.github.com/users/${user.value}/repos?per_page=100&client_id=${cid}&client_secret=${cs}`;
+    let url = `https://api.github.com/users/${user.value}/repos?per_page=100&token=${process.env.GITHUB_TOKEN}`;
 
     fetch(url)
     .then(function (response) {
@@ -93,4 +90,18 @@ function showData() {
         tbody.innerHTML = tableStuff;
 
     });
+
+
 }
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+
