@@ -4,7 +4,8 @@
     "watch": "webpack --watch",
     "build-dev": "webpack --config=webpack.dev.config.js",
     "build": "webpack --config=webpack.prod.config.js",
-    "start:dev": "webpack-dev-server --config=webpack.dev.config.js"
+    "start:dev": "webpack-dev-server --config=webpack.dev.config.js",
+    "netlify" : "npm i && npm build"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
