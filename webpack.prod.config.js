@@ -10,7 +10,7 @@ module.exports = {
         "./src/index.js"
     ],
     mode: 'production',
-    watch: true,
+    watch: false,
 	output: {
         filename: "assets/bundle.js",
         path: path.resolve(__dirname, 'dist')
